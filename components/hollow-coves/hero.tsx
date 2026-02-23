@@ -71,7 +71,7 @@ export function Hero() {
                 asChild
               >
                 <a
-                  href="https://www.youtube.com/@HollowCoves"
+                  href="https://chat.whatsapp.com/C57qaICOABA3VDta4iIGfv"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
