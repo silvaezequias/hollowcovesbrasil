@@ -55,7 +55,7 @@ export function Hero() {
                 asChild
               >
                 <a
-                  href="https://www.instagram.com/hollowcoves"
+                  href="https://www.instagram.com/hollowcovesbrasil"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
