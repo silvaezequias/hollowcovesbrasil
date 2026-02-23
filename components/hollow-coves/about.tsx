@@ -1,11 +1,12 @@
 import Image from "next/image";
-import { MapPin, Music, Heart, Instagram } from "lucide-react";
+import { MapPin, Music, Heart, Instagram, ListMusic } from "lucide-react";
 import Link from "next/link";
+import { IconLink } from "../ui/icon-link";
 
 const highlights = [
   {
     icon: MapPin,
-    title: "Brisbane, Austrália",
+    title: "Gold Coast, Austrália",
     description: "De onde vem o som que conquista corações pelo mundo",
   },
   {
@@ -25,14 +26,14 @@ export function About() {
     <section id="sobre" className="py-20 md:py-32 bg-card">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div className="relative aspect-[4/5] lg:aspect-square rounded-lg overflow-hidden">
+          <div className="relative aspect-4/5 lg:aspect-square rounded-lg overflow-hidden">
             <Image
               src="/images/beach-sunset.jpg"
               alt="Pôr do sol na praia"
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-primary/20 to-transparent" />
           </div>
 
           <div>
@@ -46,67 +47,55 @@ export function About() {
               <p>
                 Hollow Coves é uma dupla indie folk formada em Brisbane,
                 Austrália, composta por{" "}
-                <Link
-                  href={"https://www.instagram.com/mattcarins/"}
-                  target="_blank"
-                  className="text-primary hover:underline"
-                >
-                  <Instagram className="h-4 w-4 inline mr-1" />
-                  Matt Carins
-                </Link>{" "}
+                <IconLink
+                  content="Matt Carins"
+                  type="instagram"
+                  variant="primary"
+                  url="https://www.instagram.com/mattcarins/"
+                />{" "}
                 e{" "}
-                <Link
-                  href={"https://www.instagram.com/ryanhendersonmusic/"}
-                  target="_blank"
-                  className="text-primary hover:underline"
-                >
-                  <Instagram className="h-4 w-4 inline mr-1" />
-                  Ryan Henderson
-                </Link>
+                <IconLink
+                  content="Ryan Henderson"
+                  type="instagram"
+                  variant="primary"
+                  url="https://www.instagram.com/ryanhendersonmusic/"
+                />
                 . Desde 2014, eles vêm encantando ouvintes ao redor do mundo com
                 harmonias vocais sensíveis e letras introspectivas.
               </p>
               <p>
                 Suas músicas são uma celebração da natureza, das viagens e da
                 busca por significado. Com hits como{" "}
-                <strong className="text-foreground">
-                  <Link
-                    href="https://open.spotify.com/intl-pt/track/4sDbdBjuYQVdNNB4PiHUPo?si=9cf32099df3d4a5e"
-                    target="_blank"
-                    className="hover:underline"
-                  >
-                    <Music className="h-4 w-4 inline mr-1" />
-                    Coastline
-                  </Link>
-                </strong>
+                <IconLink
+                  content="Coastline"
+                  type="music"
+                  url="https://open.spotify.com/intl-pt/track/4sDbdBjuYQVdNNB4PiHUPo?si=9cf32099df3d4a5e"
+                />
                 ,{" "}
-                <strong className="text-foreground">
-                  <Link
-                    href="https://open.spotify.com/intl-pt/track/5377z0OljWvRR7CdSQrJxP?si=3bc69465cae14421"
-                    target="_blank"
-                    className="hover:underline"
-                  >
-                    <Music className="h-4 w-4 inline mr-1" />
-                    The Woods
-                  </Link>
-                </strong>{" "}
+                <IconLink
+                  content="The Woods"
+                  type="music"
+                  url="https://open.spotify.com/intl-pt/track/5377z0OljWvRR7CdSQrJxP?si=3bc69465cae14421"
+                />{" "}
                 e{" "}
-                <strong className="text-foreground">
-                  <Link
-                    href="https://open.spotify.com/intl-pt/track/1ZsUx0zG78g51kxphSGz9d?si=04d7ca16f88c4d6f"
-                    target="_blank"
-                    className="hover:underline"
-                  >
-                    <Music className="h-4 w-4 inline mr-1" />
-                    Moments
-                  </Link>
-                </strong>
-                , conquistaram milhões de ouvintes ao redor do mundo.
+                <IconLink
+                  content="Moments"
+                  type="music"
+                  url="https://open.spotify.com/intl-pt/track/1ZsUx0zG78g51kxphSGz9d?si=04d7ca16f88c4d6f"
+                />
+                , conquistaram milhões de ouvintes ao redor do mundo.{" "}
               </p>
               <p>
-                No Brasil, a comunidade de fãs cresce a cada dia, unida pela
-                paixão por uma música que toca a alma e nos reconecta com a
-                natureza e com nós mesmos.
+                Em 2024, a dupla consolidou ainda mais sua maturidade musical
+                com o álbum{" "}
+                <IconLink
+                  content="Nothing to Lose"
+                  type="music-album"
+                  url="https://open.spotify.com/intl-pt/album/3MLs9OSTBURXZ87o8ItJSp"
+                />
+                , mantendo a essência que os fãs amam. No Brasil, a comunidade
+                de fãs cresce a cada dia, unida pela paixão por uma música que
+                toca a alma e nos reconecta com a natureza e com nós mesmos.
               </p>
             </div>
 

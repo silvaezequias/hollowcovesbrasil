@@ -1,86 +1,97 @@
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Play, Instagram, Youtube } from "lucide-react";
+import { Play, Instagram, Youtube, MessageCircle } from "lucide-react";
 
 export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-dvh w-full flex items-center justify-center overflow-hidden bg-background py-20 lg:py-0"
     >
-      <div className="absolute inset-0">
-        <Image
-          src="/images/hero-forest.jpg"
-          alt="Floresta atmosférica"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-linear-to-b from-foreground/60 via-foreground/40 to-background" />
-      </div>
+      <div className="container mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Main Content / Text Column */}
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8 order-2 lg:order-1">
+            {/* Tag/Badge Superior */}
+            <div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/5 px-6 py-2">
+              <span className="text-primary uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold">
+                Comunidade Oficial de Fãs
+              </span>
+            </div>
 
-      <div className="relative z-10 container pt-50 pb-12 px-20 lg:max-h-svh rounded-full aspect-square  text-center backdrop-blur-[3px]">
-        <div className="max-w-3xl mx-auto">
-          <p className="text-card/80 uppercase tracking-[0.3em] text-sm mb-4 font-medium">
-            Comunidade Oficial de Fãs
-          </p>
-          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-card mb-6 leading-tight text-balance">
-            Hollow Coves
-            <span className="block text-accent">Brasil</span>
-          </h1>
-          <p className="text-card/90 text-lg md:text-xl max-w-xl mx-auto mb-8 leading-relaxed text-pretty">
-            A maior comunidade brasileira de fãs da dupla australiana que
-            encanta o mundo com suas melodias folk e letras sobre natureza,
-            viagens e autodescoberta.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="gap-2 text-base min-h-12" asChild>
-              <a
-                href="https://open.spotify.com/artist/7IAFAOtc9kTYNTizhLSWM6"
-                target="_blank"
-                rel="noopener noreferrer"
+            {/* Título Principal */}
+            <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-foreground">
+              Hollow Coves
+              <span className="block mt-2 text-primary">Brasil</span>
+            </h1>
+
+            {/* Descrição */}
+            <p className="text-foreground/80 text-lg sm:text-xl max-w-xl leading-relaxed font-light text-pretty">
+              A maior comunidade brasileira de fãs da dupla australiana que
+              encanta o mundo com suas melodias folk e letras sobre natureza,
+              viagens e autodescoberta.
+            </p>
+
+            {/* Botões / Call to Actions */}
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4 w-full sm:w-auto">
+              <Button
+                size="lg"
+                className="w-full sm:w-auto gap-2 text-base h-14 px-8 rounded-full shadow-lg hover:scale-105 transition-transform"
+                asChild
               >
-                <Play className="h-5 w-5" />
-                Ouvir Agora
-              </a>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="gap-2 text-base min-h-12 bg-card/10 border-primary text-primary hover:bg-primary/20 hover:text-primary"
-              asChild
-            >
-              <a
-                href="https://www.instagram.com/hollowcoves"
-                target="_blank"
-                rel="noopener noreferrer"
+                <a
+                  href="https://open.spotify.com/artist/7IAFAOtc9kTYNTizhLSWM6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Play className="h-5 w-5 fill-current" />
+                  Ouvir Agora
+                </a>
+              </Button>
+
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full sm:w-auto gap-2 text-base h-14 px-8 rounded-full border-primary/50 text-primary hover:bg-primary/10 transition-all duration-300"
+                asChild
               >
-                <Instagram className="h-5 w-5" />
-                Instagram
-              </a>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="gap-2 text-base min-h-12 bg-card/10  text-primary hover:bg-primary/20 hover:text-primary border-primary"
-              asChild
-            >
-              <a
-                href="https://www.youtube.com/@HollowCoves"
-                target="_blank"
-                rel="noopener noreferrer"
+                <a
+                  href="https://www.instagram.com/hollowcoves"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Instagram className="h-5 w-5" />
+                  Nosso Instagram
+                </a>
+              </Button>
+
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full sm:w-auto gap-2 text-base h-14 px-8 rounded-full border-primary/50 text-primary hover:bg-primary/10 transition-all duration-300"
+                asChild
               >
-                <Youtube className="h-5 w-5" />
-                YouTube
-              </a>
-            </Button>
+                <a
+                  href="https://www.youtube.com/@HollowCoves"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MessageCircle className="h-6 w-6" />
+                  Grupo no WhatsApp
+                </a>
+              </Button>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2">
-        <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center">
-          <div className="w-1.5 h-3 bg-primary/70 rounded-full mt-2 animate-bounce" />
+          {/* Image Column */}
+          <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end w-full mx-auto">
+            <div className="relative lg:aspect-4/5 aspect-square rounded-lg overflow-hidden">
+              <img
+                src="/images/hollow-coves-wearing-br.jpg"
+                alt="Hollow Coves"
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
