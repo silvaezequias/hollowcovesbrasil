@@ -6,13 +6,9 @@ import {
   Menu,
   X,
   Music,
-  User,
-  LogIn,
   ChevronDown,
   Users,
-  ImageIcon,
-  Newspaper,
-  MapPin,
+  Contact,
   Disc,
   FileText,
 } from "lucide-react";
@@ -26,7 +22,7 @@ import {
 
 const mainNavLinks = [
   { href: "/#inicio", label: "Inicio" },
-  // { href: "/noticias", label: "Noticias" }, finalizar sistema de notícias
+  // { href: "/noticias", label: "Noticias" }, // finalizar sistema de notícias
   { href: "/come-to-brazil", label: "Come to Brazil" },
 ];
 
@@ -37,15 +33,17 @@ const bandaDropdownItems = [
 ];
 
 const comunidadeDropdownItems = [
+  { href: "/contato", label: "Contato", icon: Contact },
   { href: "/membros", label: "Membros", icon: Users },
-  { href: "/galeria", label: "Galeria", icon: ImageIcon },
-  { href: "/enviar-foto", label: "Enviar Foto", icon: ImageIcon },
+  // { href: "/galeria", label: "Galeria", icon: ImageIcon },
+  // { href: "/enviar-foto", label: "Enviar Foto", icon: ImagePlus },
 ];
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const user: any = null; // TODO: Adicionar autenticação mais tarde
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4">
@@ -204,7 +202,7 @@ export function Header() {
               </div>
 
               <div className="border-t border-border/50 pt-4 mt-2">
-                {user ? (
+                {/* {user ? (
                   <Link
                     href="/perfil"
                     className="text-primary font-medium py-2 flex items-center gap-2"
@@ -222,7 +220,7 @@ export function Header() {
                     <LogIn className="w-4 h-4" />
                     Entrar / Registrar
                   </Link>
-                )}
+                )} */}
                 <Button asChild className="mt-3 w-full">
                   <a
                     href="https://open.spotify.com/artist/7IAFAOtc9kTYNTizhLSWM6"

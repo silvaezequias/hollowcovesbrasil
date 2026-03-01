@@ -14,6 +14,28 @@ const footerLinks = [
     ],
   },
   {
+    title: "Legal",
+    links: [
+      { label: "Termos de Uso", href: "/legal/termos-de-uso" },
+      {
+        label: "Políticas de Privacidade",
+        href: "/legal/politica-de-privacidade",
+      },
+      {
+        label: "Políticas de Cookies",
+        href: "/legal/politica-de-cookies",
+      },
+      {
+        label: "Diretrizes da Comunidade",
+        href: "/legal/diretrizes-da-comunidade",
+      },
+      {
+        label: "Aviso de Não Vinculação",
+        href: "/legal/aviso-de-nao-vinculacao",
+      },
+    ],
+  },
+  {
     title: "Plataformas",
     links: [
       {
@@ -62,7 +84,7 @@ export function Footer() {
   return (
     <footer className="bg-foreground text-card">
       <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
+        <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-10 lg:gap-8">
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <Music className="h-6 w-6 text-primary" />
