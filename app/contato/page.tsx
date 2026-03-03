@@ -268,7 +268,7 @@ ${message}`,
   const isDisabled = !message || !name || !senderEmail;
 
   return (
-    <div className="relative rounded-md p-2 w-[90%] md:w-[70%]">
+    <div className="relative rounded-md p-2 w-full md:w-[70%]">
       <div className="space-y-2 text-center mb-6">
         <h3 className="text-xl font-serif font-bold">
           Prefere enviar uma mensagem direta?
@@ -319,7 +319,7 @@ ${message}`,
 
 const Divider = () => {
   return (
-    <div className="flex items-center gap-4 w-[90%] md:w-[70%]">
+    <div className="flex items-center gap-4 w-full md:w-[70%]">
       <div className="flex-1 h-px bg-[repeating-linear-gradient(to_right,var(--color-border)_0px,var(--color-border)_15px,transparent_15px,transparent_24px)] opacity-80" />
       <span className="tracking-widest text-foreground font-serif font-bold text-2xl">
         Ou
