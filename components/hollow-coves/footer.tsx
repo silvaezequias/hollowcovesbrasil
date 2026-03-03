@@ -6,11 +6,10 @@ const footerLinks = [
     title: "Navegação",
     links: [
       { label: "Início", href: "/#inicio" },
-      { label: "Notícias", href: "/noticias" },
       { label: "Sobre", href: "/#sobre" },
-      { label: "Discografia", href: "/discografia" },
-      { label: "Letras", href: "/#letras" },
       { label: "Comunidade", href: "/#comunidade" },
+      { label: "Come to Brazil", href: "/come-to-brazil" },
+      { label: "Contato", href: "/contato" },
     ],
   },
   {

@@ -12,9 +12,10 @@ import {
 
 import { Card } from "@/components/ui/card";
 import { Layout } from "@/components/layout";
+import { IconLink } from "@/components/ui/icon-link";
 
 export default function PrivacyPolicy() {
-  const lastUpdate = "1 de Março de 2026";
+  const lastUpdate = "3 de Março de 2026";
 
   return (
     <Layout>
@@ -193,7 +194,57 @@ export default function PrivacyPolicy() {
                   segurança da plataforma (como registros de auditoria).
                 </p>
               </div>
+              {/* 7.1. Prazo de Retenção de Dados */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 border-b border-border pb-2 pt-4">
+                  <Database className="w-5 h-5 text-primary" />
+                  <h2 className="text-xl font-serif font-bold m-0">
+                    7.1. Prazo de Retenção de Dados (Art. 15 e 16 da LGPD)
+                  </h2>
+                </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  Os dados pessoais serão armazenados apenas pelo tempo
+                  necessário para cumprir as finalidades para as quais foram
+                  coletados, incluindo:
+                </p>
+                <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
+                  <li>Manutenção do funcionamento da plataforma.</li>
+                  <li>Cumprimento de obrigações legais ou regulatórias.</li>
+                  <li>
+                    Exercício regular de direitos em processos judiciais,
+                    administrativos ou arbitrais.
+                  </li>
+                  <li>Garantia da segurança e prevenção a fraudes.</li>
+                </ul>
 
+                <p className="text-muted-foreground leading-relaxed">
+                  Após a exclusão da conta pelo usuário, os dados pessoais serão
+                  removidos, anonimizados ou bloqueados, conforme aplicável,
+                  exceto quando sua retenção for necessária para:
+                </p>
+
+                <ul className="list-disc pl-5 space-y-2 text-muted-foreground">
+                  <li>Cumprimento de obrigação legal.</li>
+                  <li>
+                    Preservação de registros de acesso, conforme previsto no
+                    Marco Civil da Internet.
+                  </li>
+                  <li>Resolução de disputas ou prevenção de fraudes.</li>
+                </ul>
+
+                <p className="text-muted-foreground leading-relaxed">
+                  Os registros de acesso poderão ser mantidos pelo prazo mínimo
+                  de 6 (seis) meses, conforme previsto no{" "}
+                  <IconLink
+                    content="Art. 15 do Marco Civil da Internet (Lei nº 12.965/2014)"
+                    type="external-link"
+                    url={
+                      "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm"
+                    }
+                  />{" "}
+                  que obriga a guarda de registros de acesso (logs).
+                </p>
+              </div>
               {/* 8. Alterações */}
               <div className="space-y-4">
                 <div className="flex items-center gap-3 border-b border-border pb-2 pt-4">
@@ -212,7 +263,13 @@ export default function PrivacyPolicy() {
 
             <div className="mt-12 p-6 rounded-lg bg-primary/5 border border-primary/20 text-center">
               <p className="text-sm text-muted-foreground">
-                Para exercer seus direitos ou tirar dúvidas, entre em contato
+                Para exercer seus direitos ou tirar dúvidas,{" "}
+                <IconLink
+                  content="entre em contato"
+                  url="/contato"
+                  type="internal-link"
+                  variant="primary"
+                />{" "}
                 conosco pelos canais oficiais da comunidade.
               </p>
             </div>
