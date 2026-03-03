@@ -248,7 +248,7 @@ export function Lyrics() {
             conecte-se ainda mais com cada verso
           </p>
         </div>
-        <div className="columns-1 xl:columns-2 gap-2 p-5 w-full bg-background rounded-lg">
+        <div className="columns-1 xl:columns-2 gap-2 md:p-5 w-full bg-background rounded-lg">
           {Object.entries(grouped).map(([album, songs]) => {
             const isExpanded = expandedAlbums[album] || false;
             const visibleSongs = isExpanded ? songs : songs.slice(0, 4);
