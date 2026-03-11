@@ -2,46 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, ArrowRight } from "lucide-react";
+import { ExternalLink, ArrowRight, Music2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { title } from "process";
-
-const albums = [
-  {
-    title: "Nothing to Lose",
-    year: "2024",
-    tracks: 11,
-    spotifyUrl:
-      "https://open.spotify.com/intl-pt/album/3MLs9OSTBURXZ87o8ItJSp?si=_MvIBWxYT0W2zPTZss5Nkw",
-    cover: "/images/album-nothing-to-lose.jpg",
-  },
-  {
-    title: "Moments",
-    year: "2019",
-    tracks: 11,
-    spotifyUrl: "https://open.spotify.com/intl-pt/album/1AdV0dbxTNI6ihLCJYyE96",
-    cover: "/images/album-moments.jpg",
-  },
-  {
-    title: "Wanderlust",
-    year: "2017",
-    tracks: 6,
-    spotifyUrl: "https://open.spotify.com/intl-pt/album/37yGR6auNK3W1XbcDYfSjw",
-    cover: "/images/album-wanderlust.jpg",
-  },
-];
-
-const popularSongs = [
-  { title: "Coastline", plays: "~500M" },
-  { title: "The Woods", plays: "~100M" },
-  { title: "Home", plays: "~100M" },
-  { title: "Blessings", plays: "~56M" },
-  { title: "These Memories", plays: "~48M" },
-  { title: "Evermore", plays: "~38M" },
-];
+import { hollowCoves } from "@/data/hollow-coves";
+import { formatPlaysCompact } from "@/lib/utils";
 
 export function Discography() {
+  const albums = Object.values(hollowCoves.albums);
+  const allTracksArray = Object.values(hollowCoves.tracks);
+
+  const top6Tracks = allTracksArray
+    .sort((a, b) => b.plays - a.plays)
+    .slice(0, 5);
+
   return (
     <section id="discografia" className="py-20 md:py-32 bg-background">
       <div className="container mx-auto px-4">
@@ -56,11 +30,7 @@ export function Discography() {
             Explore a discografia completa do Hollow Coves e descubra suas
             músicas favoritas
           </p>
-          <Button
-            variant="outline"
-            asChild
-            className="min-h-[48px] bg-transparent"
-          >
+          <Button variant="outline" asChild className="min-h-12 bg-transparent">
             <Link href="/discografia">
               Ver Discografia Completa
               <ArrowRight className="h-4 w-4 ml-2" />
@@ -84,7 +54,7 @@ export function Discography() {
                 <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors flex items-center justify-center">
                   <Button
                     size="lg"
-                    className="opacity-0 group-hover:opacity-100 transition-opacity min-h-[48px]"
+                    className="opacity-0 group-hover:opacity-100 transition-opacity min-h-12"
                     asChild
                   >
                     <a
@@ -103,7 +73,7 @@ export function Discography() {
                   {album.title}
                 </h3>
                 <p className="text-muted-foreground text-sm">
-                  {album.year} • {album.tracks} faixas
+                  {album.year} • {album.tracks.length} faixas
                 </p>
               </CardContent>
             </Card>
@@ -115,8 +85,10 @@ export function Discography() {
             Músicas Mais Populares
           </h3>
           <div className="space-y-3 h0">
-            {popularSongs.map((song, index) => (
-              <div
+            {top6Tracks.map((song, index) => (
+              <Link
+                target="_blank"
+                href={song.spotifyUrl}
                 key={song.title}
                 className="flex items-center gap-4 p-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-colors"
               >
@@ -126,10 +98,10 @@ export function Discography() {
                 <div className="flex-1">
                   <h4 className="font-medium text-foreground">{song.title}</h4>
                 </div>
-                <span className="text-sm text-muted-foreground">
-                  {song.plays} plays
+                <span className="text-sm text-muted-foreground uppercase flex gap-2 items-center">
+                  {formatPlaysCompact(song.plays)} <Music2 size={12} />
                 </span>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

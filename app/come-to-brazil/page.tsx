@@ -45,13 +45,6 @@ const tourDates = [
   },
 ];
 
-const stats = [
-  { label: "Cidades", value: "4" },
-  { label: "Shows", value: "4" },
-  { label: "Fãs presentes", value: "~10.000" },
-  { label: "Datas inesquecíveis", value: "4" },
-];
-
 export default function ComeToBrazilPage() {
   return (
     <main className="min-h-screen bg-background">
@@ -96,13 +89,13 @@ export default function ComeToBrazilPage() {
             </div>
             <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-lg px-6 py-4 min-w-35">
               <div className="text-2xl md:text-3xl font-bold text-primary">
-                ~10.000
+                ~10k
               </div>
               <div className="text-sm text-muted-foreground">Fãs presentes</div>
             </div>
             <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-lg px-6 py-4 min-w-35">
               <div className="text-2xl md:text-3xl font-bold text-primary">
-                +40.000{" "}
+                +40k{" "}
               </div>
               <div className="text-sm text-muted-foreground">
                 Imagens capturadas

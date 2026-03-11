@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { MapPin, Music, Heart, Instagram, ListMusic } from "lucide-react";
-import Link from "next/link";
 import { IconLink } from "../ui/icon-link";
+import { hollowCoves } from "@/data/hollow-coves";
+import { Musics } from "@/data/tracks";
+import { Albums } from "@/data/albums";
 
 const highlights = [
   {
@@ -41,58 +43,27 @@ export function About() {
               Sobre a Banda
             </p>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">
-              Matt Carins & Ryan Henderson
+              {hollowCoves.mattCarins.name} & {hollowCoves.ryanHenderson.name}
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
                 Hollow Coves é uma dupla indie folk formada em Brisbane,
-                Austrália, composta por{" "}
-                <IconLink
-                  content="Matt Carins"
-                  type="instagram"
-                  variant="primary"
-                  url="https://www.instagram.com/mattcarins/"
-                />{" "}
-                e{" "}
-                <IconLink
-                  content="Ryan Henderson"
-                  type="instagram"
-                  variant="primary"
-                  url="https://www.instagram.com/ryanhendersonmusic/"
-                />
-                . Desde 2014, eles vêm encantando ouvintes ao redor do mundo com
-                harmonias vocais sensíveis e letras introspectivas.
+                Austrália, composta por {hollowCoves.mattCarins.externalLink} e{" "}
+                {hollowCoves.ryanHenderson.externalLink}. Desde 2014, eles vêm
+                encantando ouvintes ao redor do mundo com harmonias vocais
+                sensíveis e letras introspectivas.
               </p>
               <p>
                 Suas músicas são uma celebração da natureza, das viagens e da
                 busca por significado. Com hits como{" "}
-                <IconLink
-                  content="Coastline"
-                  type="music"
-                  url="https://open.spotify.com/intl-pt/track/4sDbdBjuYQVdNNB4PiHUPo?si=9cf32099df3d4a5e"
-                />
-                ,{" "}
-                <IconLink
-                  content="The Woods"
-                  type="music"
-                  url="https://open.spotify.com/intl-pt/track/5377z0OljWvRR7CdSQrJxP?si=3bc69465cae14421"
-                />{" "}
-                e{" "}
-                <IconLink
-                  content="Moments"
-                  type="music"
-                  url="https://open.spotify.com/intl-pt/track/1ZsUx0zG78g51kxphSGz9d?si=04d7ca16f88c4d6f"
-                />
-                , conquistaram milhões de ouvintes ao redor do mundo.{" "}
+                {hollowCoves.tracks[Musics.Coastline].externalLink},{" "}
+                {hollowCoves.tracks[Musics.TheWoods].externalLink} e{" "}
+                {hollowCoves.tracks[Musics.Moments].externalLink}, conquistaram
+                milhões de ouvintes ao redor do mundo.{" "}
               </p>
               <p>
                 Em 2024, a dupla consolidou ainda mais sua maturidade musical
-                com o álbum{" "}
-                <IconLink
-                  content="Nothing to Lose"
-                  type="music-album"
-                  url="https://open.spotify.com/intl-pt/album/3MLs9OSTBURXZ87o8ItJSp"
-                />
+                com o álbum {hollowCoves.albums[Albums.Wanderlust].externalLink}
                 , mantendo a essência que os fãs amam. No Brasil, a comunidade
                 de fãs cresce a cada dia, unida pela paixão por uma música que
                 toca a alma e nos reconecta com a natureza e com nós mesmos.
