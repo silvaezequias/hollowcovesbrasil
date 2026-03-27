@@ -14,6 +14,7 @@ import {
   ChevronDown,
   ChevronUp,
   Headphones,
+  Flame,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -21,6 +22,9 @@ import { Badge } from "@/components/ui/badge";
 import { Album } from "@/data/albums";
 import { convertSecondsToDuration, formatPlaysCompact } from "@/lib/utils";
 import { hollowCoves } from "@/data/hollow-coves";
+import { Track } from "@/data/tracks";
+import { AiOutlineSpotify } from "react-icons/ai";
+import { MdOutlineLyrics } from "react-icons/md";
 
 function AlbumSection({
   album,
@@ -35,9 +39,11 @@ function AlbumSection({
     .sort((a, b) => b.plays - a.plays)
     .slice(0, 3);
 
+  const trackList = isExpanded ? album.tracks : album.tracks.slice(0, 5);
+
   return (
-    <section className="py-12 md:py-16 border-b border-border last:border-b-0">
-      <div className="container mx-auto px-4">
+    <section className="py-12 lg:py-16 px-5 border-b border-border last:border-b-0">
+      <div className="container overflow-x-hidden">
         <div className="grid lg:grid-cols-[400px_1fr] gap-8 lg:gap-12">
           <div className="space-y-6">
             <div className="relative aspect-square rounded-lg overflow-hidden shadow-xl group">
@@ -45,10 +51,10 @@ function AlbumSection({
                 src={album.cover || "/placeholder.svg"}
                 alt={`Capa do álbum ${album.title}`}
                 fill
-                className="object-cover"
+                className="object-cover max-w-full"
                 priority
               />
-              <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/30 transition-colors flex items-center justify-center">
+              <div className="absolute w-full inset-0 bg-foreground/0 group-hover:bg-foreground/30 transition-colors flex items-center justify-center">
                 <Button
                   size="lg"
                   className="opacity-0 group-hover:opacity-100 transition-opacity min-h-12"
@@ -68,7 +74,7 @@ function AlbumSection({
 
             <div className="space-y-4">
               <div>
-                <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-2">
+                <h2 className="font-serif text-3xl lg:text-4xl font-bold text-foreground mb-2">
                   {album.title}
                 </h2>
                 <div className="flex flex-wrap items-center gap-3 text-muted-foreground text-sm">
@@ -156,62 +162,19 @@ function AlbumSection({
               </Button>
             </div>
 
-            <div className="space-y-2">
-              {(isExpanded ? album.tracks : album.tracks.slice(0, 5)).map(
-                (track, index) => (
-                  <Card
-                    key={index}
-                    className={`border-border py-3 md:py-5 hover:border-primary/50 transition-colors bg-card`}
-                  >
-                    <CardContent className="flex items-center gap-4">
-                      <span className="text-lg font-serif font-semibold text-primary/60 w-8 text-center">
-                        {index + 1}
-                      </span>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2">
-                          {topTracks.find((t) => t.id === track.id) && (
-                            <Badge
-                              variant="default"
-                              className="text-[10px] px-1.5 py-0"
-                            >
-                              Popular
-                            </Badge>
-                          )}
-                          <h4 className="font-medium text-foreground truncate">
-                            {track.title}
-                          </h4>
-                          <Link href={track.spotifyUrl} target="_blank">
-                            <Badge
-                              variant="outline"
-                              className="text-[10px] px-1.5 py-0 cursor-pointer hover:bg-primary/10"
-                            >
-                              Spotify
-                            </Badge>
-                          </Link>
-                          <Link href={track.lyricsUrl} target="_blank">
-                            <Badge
-                              variant="outline"
-                              className="text-[10px] px-1.5 py-0 cursor-pointer hover:bg-primary/10"
-                            >
-                              Tradução
-                            </Badge>
-                          </Link>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        {track.plays && (
-                          <span className="hidden sm:block">
-                            {formatPlaysCompact(track.plays)}
-                          </span>
-                        )}
-                        <span className="font-mono text-xs">
-                          {convertSecondsToDuration(track.duration)}
-                        </span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ),
-              )}
+            <div className="space-y-2 flex flex-col gap-4">
+              {trackList.map((track, index) => (
+                <>
+                  <TrackItem
+                    index={index}
+                    track={track}
+                    isTopTrack={!!topTracks.find((t) => t.id === track.id)}
+                  />
+                  {trackList.length - 1 > index && (
+                    <hr className="border-muted/40 lg:hidden" />
+                  )}
+                </>
+              ))}
             </div>
 
             {!isExpanded && album.tracks.length > 5 && (
@@ -228,6 +191,81 @@ function AlbumSection({
         </div>
       </div>
     </section>
+  );
+}
+
+function TrackItem({
+  index,
+  isTopTrack,
+  track,
+}: {
+  track: Track;
+  index: number;
+  isTopTrack: boolean;
+}) {
+  return (
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 items-center">
+      <Link
+        href={track.lyricsUrl}
+        target="_blank"
+        className="flex items-center order-2 col-span-1 lg:order-1"
+      >
+        <Button
+          variant="outline"
+          title={`Acesse a tradução da músice ${track.title}`}
+          className="p-6 border-primary/10 border cursor-pointer w-full"
+        >
+          <MdOutlineLyrics className="size-6" />
+          <span>Tradução</span>
+        </Button>
+      </Link>
+      <Card
+        key={index}
+        className={`border-border w-full py-3 hover:border-primary/50 transition-colors bg-card order-1 col-span-2 lg:order-2 `}
+      >
+        <CardContent className="flex flex-col gap-2">
+          <div className="flex items-center gap-4">
+            <span className="text-lg font-serif font-semibold text-primary/60 w-8 text-center">
+              {index + 1}
+            </span>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 min-w-0 flex-wrap">
+                {isTopTrack && (
+                  <Flame className="fill-primary text-primary size-4" />
+                )}
+                <h4 className="font-medium text-foreground truncate">
+                  {track.title}
+                </h4>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 text-sm text-muted-foreground">
+              {track.plays && (
+                <span className="hidden sm:block">
+                  {formatPlaysCompact(track.plays)}
+                </span>
+              )}
+              <span className="font-mono text-xs">
+                {convertSecondsToDuration(track.duration)}
+              </span>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+      <Link
+        href={track.spotifyUrl}
+        target="_blank"
+        className="flex items-center order-3 col-span-1"
+      >
+        <Button
+          variant="outline"
+          title={`Acesse a músice ${track.title} no spotify`}
+          className="p-6 border-primary/10 border w-full cursor-pointer"
+        >
+          <AiOutlineSpotify className="size-6" />
+          <span>Spotify</span>
+        </Button>
+      </Link>
+    </div>
   );
 }
 
@@ -251,9 +289,9 @@ export default function DiscografiaPage() {
   const totalStreams = formatPlaysCompact(totalPlays) + "+";
 
   return (
-    <main className="min-h-screen bg-background">
-      <header className="bg-foreground text-card py-20 md:py-28">
-        <div className="container mx-auto px-4">
+    <main className="min-h-screen max-w-full bg-background">
+      <header className="bg-foreground text-card py-20 lg:py-28">
+        <div className="container mx-auto px-4 lg:max-w-250">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-card/70 hover:text-primary transition-colors mb-8 min-h-11"
@@ -266,7 +304,7 @@ export default function DiscografiaPage() {
             <p className="text-primary uppercase tracking-[0.2em] text-sm mb-4 font-medium">
               Discografia Completa
             </p>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-card mb-6 text-balance">
+            <h1 className="font-serif text-4xl lg:text-5xl  font-bold text-card mb-6 text-balance">
               Todos os Álbuns do Hollow Coves
             </h1>
             <p className="text-card/70 text-lg leading-relaxed mb-8">
@@ -277,19 +315,19 @@ export default function DiscografiaPage() {
 
             <div className="flex flex-wrap gap-8">
               <div>
-                <p className="text-3xl md:text-4xl font-serif font-bold text-primary">
+                <p className="text-3xl lg:text-4xl font-serif font-bold text-primary">
                   {albums.length}
                 </p>
                 <p className="text-card/60 text-sm">Álbuns</p>
               </div>
               <div>
-                <p className="text-3xl md:text-4xl font-serif font-bold text-primary">
+                <p className="text-3xl lg:text-4xl font-serif font-bold text-primary">
                   {totalTracks}
                 </p>
                 <p className="text-card/60 text-sm">Faixas</p>
               </div>
               <div>
-                <p className="text-3xl md:text-4xl font-serif font-bold text-primary">
+                <p className="text-3xl lg:text-4xl font-serif font-bold text-primary">
                   {totalStreams}
                 </p>
                 <p className="text-card/60 text-sm">Streams Totais</p>
@@ -299,18 +337,22 @@ export default function DiscografiaPage() {
         </div>
       </header>
 
-      {albums.map((album) => (
-        <AlbumSection
-          key={album.id}
-          album={album}
-          isExpanded={expandedAlbums[album.id] || false}
-          onToggle={() => toggleAlbum(album.id)}
-        />
-      ))}
+      <div className="flex flex-col items-center">
+        <div className="lg:max-w-300">
+          {albums.map((album) => (
+            <AlbumSection
+              key={album.id}
+              album={album}
+              isExpanded={expandedAlbums[album.id] || false}
+              onToggle={() => toggleAlbum(album.id)}
+            />
+          ))}
+        </div>
+      </div>
 
-      <section className="py-16 md:py-24 bg-muted">
+      <section className="py-16 lg:py-24 bg-muted">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-4">
+          <h2 className="font-serif text-2xl lg:text-3xl font-bold text-foreground mb-4">
             Quer ver as letras traduzidas?
           </h2>
           <p className="text-muted-foreground mb-8 max-w-md mx-auto">

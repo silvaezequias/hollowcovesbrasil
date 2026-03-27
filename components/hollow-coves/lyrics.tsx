@@ -1,17 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import {
-  ArrowUpRight,
-  ChevronDown,
-  ChevronUp,
-  ExternalLink,
-  MicVocal,
-} from "lucide-react";
+import { ChevronDown, ChevronUp, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { hollowCoves } from "@/data/hollow-coves";
+import { MdOutlineLyrics } from "react-icons/md";
 
 export function Lyrics() {
   const [expandedAlbums, setExpandedAlbums] = useState<Record<string, boolean>>(
@@ -66,7 +61,7 @@ export function Lyrics() {
                       <Card className="bg-card break-inside-avoid border-border hover:border-primary/30 transition-colors">
                         <CardContent className="flex justify-between">
                           <span className="flex items-center gap-4">
-                            <MicVocal className="h-4 w-4 text-muted-foreground/50" />
+                            <MdOutlineLyrics className="h-4 w-4 text-muted-foreground" />
                             {item.title}
                           </span>
                           <ExternalLink className="h-4 w-4 text-muted-foreground" />
@@ -111,7 +106,7 @@ export function Lyrics() {
                   <Card className="bg-card break-inside-avoid border-border hover:border-primary/30 transition-colors">
                     <CardContent className="flex justify-between">
                       <span className="flex items-center gap-4">
-                        <MicVocal className="h-4 w-4 text-muted-foreground/50" />
+                        <MdOutlineLyrics className="h-4 w-4 text-muted-foreground" />
                         {item.title}
                       </span>
                       <ExternalLink className="h-4 w-4 text-muted-foreground" />
