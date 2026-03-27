@@ -60,7 +60,11 @@ export const albums = {
     },
     get externalLink() {
       return (
-        <IconLink content={this.title} type="music" url={this.spotifyUrl} />
+        <IconLink
+          content={this.title}
+          type="music-album"
+          url={this.spotifyUrl}
+        />
       );
     },
   },

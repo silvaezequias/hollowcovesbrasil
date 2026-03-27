@@ -62,11 +62,12 @@ export function About() {
                 milhões de ouvintes ao redor do mundo.{" "}
               </p>
               <p>
-                Em 2024, a dupla consolidou ainda mais sua maturidade musical
-                com o álbum {hollowCoves.albums[Albums.Wanderlust].externalLink}
-                , mantendo a essência que os fãs amam. No Brasil, a comunidade
-                de fãs cresce a cada dia, unida pela paixão por uma música que
-                toca a alma e nos reconecta com a natureza e com nós mesmos.
+                Em {hollowCoves.albums[Albums.Wanderlust].year}, a dupla
+                consolidou ainda mais sua maturidade musical com o álbum{" "}
+                {hollowCoves.albums[Albums.Wanderlust].externalLink}, mantendo a
+                essência que os fãs amam. No Brasil, a comunidade de fãs cresce
+                a cada dia, unida pela paixão por uma música que toca a alma e
+                nos reconecta com a natureza e com nós mesmos.
               </p>
             </div>
 
